@@ -1,4 +1,4 @@
-ArnesSpaceTaxi
+Arne's SpaceTaxi
 ==============
 
 Gravity-based space taxi game written in LUA
