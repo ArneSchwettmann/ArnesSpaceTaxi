@@ -1,0 +1,38 @@
+BGMask:
+
+any pixel with alpha=0 (perfectly transparent) is ignored in the mask
+otherwise, the color means:
+
+R,G,B meaning
+
+0,0,0 deadly wall
+
+192,0,0 fuel platform
+
+255,0,0 platform 1
+0,255,0 platform 2
+0,0,255 platform 3
+0,255,255 platform 4
+255,0,255 platform 5
+255,255,255 platform 6
+128,0,0 platform 7
+0,128,0 platform 8
+0,0,128 platform 9
+128,0,128 platform 10
+128,128,0 platform 11
+128,128,128 platform 12
+
+respawn points in the air (platforms automatically work as respawn points)
+
+200,0,0 respawnpoint 1
+0,200,0 respawnpoint 2
+0,0,200 respawnpoint 3
+0,200,200 respawnpoint 4
+200,0,200 respawnpoint 5
+200,200,200 respawnpoint 6
+100,0,0 respawnpoint 7
+0,100,0 respawnpoint 8
+0,0,100 respawnpoint 9
+100,0,100 respawnpoint 10
+100,100,0 respawnpoint 11
+100,100,100 respawnpoint 12

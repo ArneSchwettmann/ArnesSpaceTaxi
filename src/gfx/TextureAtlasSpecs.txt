@@ -1,0 +1,15 @@
+The top left pixel determines the grid color rgba value.
+
+The end of an animation is indicated by a four pixel thick vertical grid line instead of a single pixel thick one. The leftmost vertical gridline in each row must be a one pixel thick line.
+
+Numframes per animation is determined automatically from where the ends are indicated.
+
+There can be no horizontal gaps apart from the very end of a row.
+
+Frames can be any size even within a single animation. The image with the biggest vertical size in each row determines the row size. Images in each row have to be top aligned exactly with the bottom pixel of the row above.
+
+See existing images for examples.
+
+For pixel perfect collisions between objects, any pixel with alpha value 0 is ignored. Any other pixel is considered as colliding, even if it has transparency 1 (this will be used in the future to "shake" the taxi up and down on a rough landing, without confusing the collision detection).
+
+

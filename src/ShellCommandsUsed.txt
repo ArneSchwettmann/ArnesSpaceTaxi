@@ -1,0 +1,8 @@
+ls *.png | gawk '{print "convert "$1" -transparent \"#FFFFFF\" batch/"$1}' |bash
+
+ls rect*.png | gawk '{print "convert "$1" -fill \"#FFFFFF\" -opaque \"#EEF4F3\" ../batch3/"$1}' | bash
+
+ls player1*.png | gawk '{print "convert "$1" -modulate 100,100,33 player2.png"}' |bash
+ls player1*.png | gawk '{print "convert "$1" -modulate 100,100,66 player3.png"}' |bash
+ls player1*.png | gawk '{print "convert "$1" -modulate 100,100,-20 player4.png"}' |bash
+ls player1*.png | gawk '{print "convert "$1" -modulate 100,100,133 player5.png"}' |bash
