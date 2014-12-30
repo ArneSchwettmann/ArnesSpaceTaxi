@@ -1,4 +1,4 @@
 ArnesSpaceTaxi
 ==============
 
-Classic gravity-based taxi game written in LUA
+Gravity-based taxi game written in LUA
