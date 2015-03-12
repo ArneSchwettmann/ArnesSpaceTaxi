@@ -7,6 +7,8 @@ This is a version of the classic space taxi game written by Arne Schwettmann in 
 
 Try the 5 player mode.
 
+Pre-compiled executables for Windows and OSX are in the bin directory. 
+
 To compile from source under Windows, simply drag the src directory onto Love.exe version 0.8.0. For more information on LÖVE, visit love2d.org.
 
 See License.txt for licensing details
