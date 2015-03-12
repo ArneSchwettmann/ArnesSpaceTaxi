@@ -2,7 +2,6 @@ Arne's SpaceTaxi
 
 This is a version of the classic space taxi game written by Arne Schwettmann in LUA, making use of the LÖVE game framework. It is written for LÖVE 0.8.0.
 
-
 Pre-compiled executables for Windows and OSX are in the bin directory. 
 
 Try the 5 player mode.
