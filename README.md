@@ -11,7 +11,7 @@ Pre-compiled executables for Windows and OSX are in the bin directory. To compil
 
 See License.txt for licensing details
 
-[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-small.png)](https://flattr.com/submit/auto?user_id=arneschwettmann&url=https://github.com/ArneSchwettmann/ArnesSpaceTaxi/&title=ArnesSpaceTaxi&language=LUA&tags=github&category=software)
+Written by Arne Schwettmann [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-small.png)](https://flattr.com/submit/auto?user_id=arneschwettmann&url=https://github.com/ArneSchwettmann/ArnesSpaceTaxi/&title=ArnesSpaceTaxi&language=LUA&tags=github&category=software)
 
 ##Screenshots
 
