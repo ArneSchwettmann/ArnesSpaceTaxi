@@ -1,7 +1,7 @@
 {
   "name": "Arnesspacetaxi",
   "tagline": "Classic gravity-based taxi game written in LUA",
-  "body": "### Welcome to Arne's SpaceTaxi.\r\n\r\nArne's SpaceTaxi is a gravity-based taxi game written in LUA\r\n\r\n##Screenshots\r\n\r\nTitle:\r\n\r\n![Arne's SpaceTaxi - Title](http://www.arneschwettmann.com/delme/screenshots/ArnesSpaceTaxi_shot0.jpg)\r\n\r\nIngame:\r\n![Arne's SpaceTaxi - Ingame](http://www.arneschwettmann.com/delme/screenshots/ArnesSpaceTaxi_shot1.jpg)",
+  "body": "Arne's SpaceTaxi\r\n==============\r\n\r\nGravity-based space taxi game written in LUA\r\n\r\nThis is a version of the classic space taxi game written by Arne Schwettmann in LUA, making use of the LÖVE game framework. It is written for LÖVE 0.8.0.\r\n\r\nTry the 5 player mode.\r\n\r\nPre-compiled executables for Windows and OSX are in the bin directory. To compile from source under Windows, simply drag the src directory onto Love.exe version 0.8.0. For more information on LÖVE, visit love2d.org.\r\n\r\nSee License.txt for licensing details\r\n\r\nWritten by Arne Schwettmann \r\n\r\n\r\n##Screenshots\r\n\r\nTitle:\r\n\r\n![Arne's SpaceTaxi - Title](http://www.arneschwettmann.com/delme/screenshots/ArnesSpaceTaxi_shot0.jpg)\r\n\r\nIngame:\r\n\r\n![Arne's SpaceTaxi - Ingame](http://www.arneschwettmann.com/delme/screenshots/ArnesSpaceTaxi_shot1.jpg)\r\n",
   "google": "UA-58047154-2",
   "note": "Don't delete this file! It's used internally to help with page regeneration."
 }
