@@ -117,7 +117,25 @@ function anyButtonPressed(joystick,numButtons)
 	end
 	return returnValue
 end
-	
+
+function love.gamepadpressed(joystick, button)
+   -- press fire on title screen to start single player game with joystick controls
+   if (displayingTitleScreen
+    and button ~= "dpup" 
+    and button ~= "dpdown" 
+    and button ~= "dpleft" 
+    and button ~= "dpright") then  
+      for i=1,#joysticks,1 do
+         if joysticks[i]:getID()==joystick:getID() then
+            -- set first player to the joystick that was pressed and start game
+            controls[1]=i+2
+            numPlayers=1
+            startGame()
+         end
+      end
+   end
+end
+
 function love.keypressed(key, scancode, isrepeat)
    if displayingTitleScreen then 
       if key == 'q' then
