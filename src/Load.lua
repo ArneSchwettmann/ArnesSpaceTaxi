@@ -185,7 +185,7 @@ function love.load()
         vec4 effect(vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords)
         {
             vec4 pixelColor=vec4(0.0, 0.0, 0.0, Texel(texture, texture_coords).a);
-            if ((mod(floor(screen_coords.x),4) <= 1.5 ) != (mod(floor(screen_coords.y),4) > 1.5)) 
+            if ((mod(floor(screen_coords.x),4.0) <= 1.5 ) != (mod(floor(screen_coords.y),4.0) > 1.5)) 
                discard;
             return pixelColor;
         }
@@ -194,7 +194,7 @@ function love.load()
         vec4 effect(vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords)
         {
             vec4 pixelColor=vec4(0.0, 0.0, 0.0, 1.0);
-            if ((mod(floor(screen_coords.x),4) <= 1.5 ) != (mod(floor(screen_coords.y),4) > 1.5)) 
+            if ((mod(floor(screen_coords.x),4.0) <= 1.5 ) != (mod(floor(screen_coords.y),4.0) > 1.5)) 
                discard;
             return pixelColor;
         }

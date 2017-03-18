@@ -58,7 +58,7 @@ function love.draw()
       if waitingForClick==true then
          love.graphics.setColor(255,255,255,255)
          --love.graphics.setColorMode("modulate")
-         love.graphics.printf("Get ready for level "..currentLevel.."! (Press space)", 0, centerY-25,width,"center")
+         love.graphics.printf("Get ready for level "..currentLevel.."! (Press space or fire)", 0, centerY-25,width,"center")
          --love.graphics.setColorMode("replace")
       end
       if gameIsPaused==true then

@@ -23,7 +23,7 @@ function love.update(dt)
    
    if gameIsPaused or waitingForClick or gameWon or gameLost or displayingTitleScreen or displayingControls then
       if waitingForClick then
-         for i=1,maxNumPlayers do
+         for i=1,numPlayers do
             dummy1,dummy2,inputButton[i]=getInputPlayer(i)
             if inputButton[i] then
                waitingForClick=false

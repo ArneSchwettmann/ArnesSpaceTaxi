@@ -25,7 +25,6 @@ function getInputPlayer(playerNumber)
       if love.keyboard.isDown("rshift") then
          buttonInput=true
       end
-   
    elseif controlTypes[controls[playerNumber]]=="Keyboard 2" then
       if love.keyboard.isDown("a") then
          xInput = -1     
@@ -51,11 +50,12 @@ function getInputPlayer(playerNumber)
    else 
       local joystickNum=controls[playerNumber]-2
       local joyXInput,joyYInput = 0,0
-      if ( joystickNum < numJoysticks ) then
+      if ( joystickNum <= numJoysticks ) then
          local joystick = joysticks[joystickNum]
          local numButtons = joystick:getButtonCount()
          if joystick:getAxisCount()>=1 then
             joyXInput,joyYInput = joystick:getAxes()
+            io.write(joyXInput)
          end
          if joystick:getHatCount()>=1 then
             local hatDirection = joystick:getHat(1)
@@ -118,7 +118,7 @@ function anyButtonPressed(joystick,numButtons)
 	return returnValue
 end
 	
-function love.keypressed(key, unicode)
+function love.keypressed(key, scancode, isrepeat)
    if displayingTitleScreen then 
       if key == 'q' then
          love.event.quit()
@@ -184,7 +184,7 @@ function love.keypressed(key, unicode)
       if love.graphics.getSupported("pixeleffect") then
          drawShadows=not drawShadows
       end
-   elseif key == ' ' then
+   elseif key == "space" then
          waitingForClick=false
    --elseif key == 'c' and gameLost==true then
    --   continueGame()
