@@ -51,38 +51,39 @@ function getInputPlayer(playerNumber)
    else 
       local joystickNum=controls[playerNumber]-2
       local joyXInput,joyYInput = 0,0
-      if love.joystick.isOpen(joystickNum) then
-			local numButtons = love.joystick.getNumButtons( joystickNum )
-			if love.joystick.getNumAxes(joystickNum)>=1 then
-            joyXInput,joyYInput = love.joystick.getAxes(joystickNum)
-			end
-			if love.joystick.getNumHats(joystickNum)>=1 then
-				local hatDirection = love.joystick.getHat(joystickNum, 1)
-				if hatDirection == 'u' then
-					joyYInput = -1
-               joyXInput = 0
-				elseif hatDirection == 'd' then
-					joyYInput = 1
-				elseif hatDirection == 'l' then
-					joyXInput = -1
-				elseif hatDirection == 'r' then
-					joyXInput = 1
-				elseif hatDirection == 'ld' then
-					joyXInput = -1
-					joyYInput = 1
-				elseif hatDirection == 'lu' then
-					joyXInput = -1
-					joyYInput = -1
-				elseif hatDirection == 'rd' then
-					joyXInput = 1
-					joyYInput = 1
-				elseif hatDirection == 'ru' then
-					joyXInput = 1
-					joyYInput = -1
-				end 
-			end
+      if ( joystickNum < numJoysticks ) then
+         local joystick = joysticks[joystickNum]
+         local numButtons = joystick:getButtonCount()
+         if joystick:getAxisCount()>=1 then
+            joyXInput,joyYInput = joystick:getAxes()
+         end
+         if joystick:getHatCount()>=1 then
+            local hatDirection = joystick:getHat(1)
+            if hatDirection == 'u' then
+                joyYInput = -1
+                joyXInput = 0
+            elseif hatDirection == 'd' then
+                joyYInput = 1
+            elseif hatDirection == 'l' then
+                joyXInput = -1
+            elseif hatDirection == 'r' then
+                joyXInput = 1
+            elseif hatDirection == 'ld' then
+                joyXInput = -1
+                joyYInput = 1
+            elseif hatDirection == 'lu' then
+                joyXInput = -1
+                joyYInput = -1
+            elseif hatDirection == 'rd' then
+                joyXInput = 1
+                joyYInput = 1
+            elseif hatDirection == 'ru' then
+                joyXInput = 1
+                joyYInput = -1
+            end 
+         end
          if numButtons>0 then
-            if anyButtonPressed(joystickNum, numButtons ) then
+            if anyButtonPressed(joystick, numButtons) then
                buttonInput=true
             end
          end
@@ -101,15 +102,15 @@ function getInputPlayer(playerNumber)
             yInput = 0
          end
       end
-	end
+   end
    return xInput*inputForceMagnitude,yInput*inputForceMagnitude,buttonInput
 end       
 
-function anyButtonPressed(joystickNum,numButtons)
+function anyButtonPressed(joystick,numButtons)
 	local returnValue=false
 	if numButtons>0 then 
 		for i=1,numButtons do
-			if love.joystick.isDown( joystickNum, i ) then
+			if joystick:isDown(i) then
 				returnValue=true
 			end
 		end
@@ -180,7 +181,7 @@ function love.keypressed(key, unicode)
          waitForClick()
       end
    elseif key == 'h' then
-      if love.graphics.isSupported("pixeleffect") then
+      if love.graphics.getSupported("pixeleffect") then
          drawShadows=not drawShadows
       end
    elseif key == ' ' then

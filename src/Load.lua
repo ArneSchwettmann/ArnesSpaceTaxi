@@ -92,6 +92,9 @@ function love.load()
    inputButton={false,false,false,false,false}
    oldInputButton={false,false,false,false,false}
    
+   joysticks={}
+   numJoysticks=0
+   
    controls={
       1,
       2,
@@ -165,10 +168,10 @@ function love.load()
    }
 
    -- initialize GFX mode
-   love.graphics.setMode( 0, 0, false, false, 0 )
-   desktopWidth,desktopHeight,fullscreen,vsyncEnabled,fsaa=love.graphics.getMode()
+   love.window.setMode( 0, 0, {fullscreen=false, vsync=false, msaa=0} )
+   desktopWidth,desktopHeight,fullscreen,vsyncEnabled,fsaa=love.window.getMode()
    initializeFullscreenMode()
-   love.graphics.setDefaultImageFilter("nearest","nearest")
+   love.graphics.setDefaultFilter("nearest","nearest")
    
    --canvas1X=love.graphics.newCanvas(width,height)
    --canvas1X:setFilter("nearest","nearest")
@@ -176,9 +179,9 @@ function love.load()
    unpauseGame()
       
    -- check pixelShader support and define shaders for dithered shadows
-   if love.graphics.isSupported("pixeleffect") then
+   if true then
       drawShadows=true
-      shadowDitherShader = love.graphics.newPixelEffect([[
+      shadowDitherShader = love.graphics.newShader([[
         vec4 effect(vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords)
         {
             vec4 pixelColor=vec4(0.0, 0.0, 0.0, Texel(texture, texture_coords).a);
@@ -187,7 +190,7 @@ function love.load()
             return pixelColor;
         }
       ]])
-      shadowDitherShaderNoTexture = love.graphics.newPixelEffect([[
+      shadowDitherShaderNoTexture = love.graphics.newShader([[
         vec4 effect(vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords)
         {
             vec4 pixelColor=vec4(0.0, 0.0, 0.0, 1.0);
@@ -216,18 +219,22 @@ function love.load()
    bigFont = love.graphics.newImageFont(fontImg,
       " !#$%&'()*+,-.0123456789:;<=>?"..
       "ABCDEFGHIJKLMNOPQRSTUVWXYZ"..
-      "[/]abcdefghijklmnopqrstuvwxyz")   
+      "[/]abcdefghijklmnopqrstuvwxyz", 1)
+
    local fontImg2=love.graphics.newImage(gfxDir.."fonts/TinyUnicode7.png")
-   fontImg:setFilter("nearest","nearest")
+   fontImg2:setFilter("nearest","nearest")
    smallFont = love.graphics.newImageFont(fontImg2,
 " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"..
-"0123456789.,!?-+/():;%&`'*#=[]\\$")
-   
+"0123456789.,!?-+/():;%&`'*#=[]\\$",1)
    love.graphics.setFont(bigFont)
    love.graphics.setBackgroundColor(0,0,0)
    
    -- load sound effects
    loadSoundEffects()
+   
+   -- initialize joysticks
+   joysticks = love.joystick.getJoysticks()
+   numJoysticks = love.joystick.getJoystickCount();
    
    --pauseGame()
    titleScreen()

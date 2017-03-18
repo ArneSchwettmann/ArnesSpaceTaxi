@@ -70,7 +70,7 @@ end
 function pauseGame()
    gameIsPaused = true
    love.mouse.setVisible(true)
-   love.mouse.setGrab(false)
+   love.mouse.setGrabbed(false)
 end
 
 function waitForClick()
@@ -81,7 +81,7 @@ end
 function unpauseGame()
 	gameIsPaused = false
    gameWasPaused = true
-	love.mouse.setGrab(true)
+	love.mouse.setGrabbed(true)
 	love.mouse.setVisible(false)
 	love.mouse.setPosition(centerX,centerY)
 end
