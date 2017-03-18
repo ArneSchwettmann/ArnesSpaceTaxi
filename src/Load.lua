@@ -169,9 +169,16 @@ function love.load()
 
    -- initialize GFX mode
    love.window.setMode( 0, 0, {fullscreen=false, vsync=false, msaa=0} )
-   desktopWidth,desktopHeight,fullscreen,vsyncEnabled,fsaa=love.window.getMode()
+   local flags={}
+   desktopWidth,desktopHeight,flags=love.window.getMode()
+   fullscreen=flags.fullscreen
+   vsyncEnabled=flags.vsync
+   fsaa=flags.msaa
    initializeFullscreenMode()
    love.graphics.setDefaultFilter("nearest","nearest")
+   if fullscreen then 
+      toggleScaling()
+   end
    
    --canvas1X=love.graphics.newCanvas(width,height)
    --canvas1X:setFilter("nearest","nearest")

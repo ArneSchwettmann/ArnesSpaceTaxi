@@ -12,7 +12,13 @@ end
 function initializeWindowedMode()
    local width,height=2*width,2*height
    love.window.setMode( width, height, {fullscreen=false, vsync=false, msaa=0} )
-   fullscreenWidth,fullscreenHeight,fullscreen,vSyncEnabled,fsaa=love.window.getMode()
+
+   local flags={}
+   fullscreenWidth,fullscreenHeight,flags=love.window.getMode()
+   fullscreen=flags.fullscreen
+   vsyncEnabled=flags.vsync
+   fsaa=flags.msaa
+
    love.window.setTitle("Arne's Spacetaxi")
    borderX=0
    borderY=0
@@ -24,7 +30,13 @@ function initializeFullscreenMode()
    local width=2*width
    local height=2*height
    love.window.setMode( desktopWidth, desktopHeight, {fullscreen=true, vsync=true, msaa=0} )
-   fullscreenWidth,fullscreenHeight,fullscreen,vSyncEnabled,fsaa=love.window.getMode()
+
+   local flags={}
+   fullscreenWidth,fullscreenHeight,flags=love.window.getMode()
+   fullscreen=flags.fullscreen
+   vsyncEnabled=flags.vsync
+   fsaa=flags.msaa
+
    if fullscreenWidth>width then
       borderX=math.floor((fullscreenWidth-width)/2)
    end
