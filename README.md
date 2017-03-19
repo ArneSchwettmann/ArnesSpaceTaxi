@@ -13,7 +13,7 @@ Packages that are ready to run for Windows, OSX and Android can be downloaded fr
 
 Note the Android version currently requires an external controller (joystick or gamepad) to be playable.
 
-See License.txt for licensing details
+See License.txt and Readme_License.txt for licensing details
 
 Written by Arne Schwettmann 
 
