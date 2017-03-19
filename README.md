@@ -7,7 +7,11 @@ This is a version of the classic space taxi game written by Arne Schwettmann in 
 
 Try the 5 player mode.
 
-Pre-compiled executables for Windows and OSX are in the bin directory. To compile from source under Windows, simply drag the src directory onto Love.exe version 0.10.2. For more information on LÖVE, visit love2d.org.
+To compile from source under Windows or OSX, simply drag the src directory onto Love.exe version 0.10.2. For more information on LÖVE, visit love2d.org.
+
+Packages that are ready to run for Windows, OSX and Android can be downloaded from the "releases" page in github at www.github.com/arneschwettmann/arnesspacetaxi/releases
+
+Note the Android version currently requires an external controller (joystick or gamepad) to be playable.
 
 See License.txt for licensing details
 
