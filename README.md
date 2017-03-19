@@ -13,8 +13,6 @@ Packages that are ready to run for Windows, OSX and Android can be downloaded fr
 
 Note the Android version currently requires an external controller (joystick or gamepad) to be playable.
 
-Written by Arne Schwettmann
-
 Copyright (c) 2013-2017 Arne Schwettmann
 
 The above copyright holds for all material in this project that is not part of LÖVE or the libraries distributed with LÖVE. This program is not free software. Default copyright laws apply. See License.txt and Readme_License.txt for more licensing details
