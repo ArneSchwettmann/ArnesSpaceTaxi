@@ -22,7 +22,7 @@ function love.draw()
    if displayingTitleScreen then
       drawTitleScreen()
    elseif displayingControls then
-         drawControlScreen()
+      drawControlScreen()
    else
 
       love.graphics.setColor(255,255,255,255)
@@ -86,6 +86,36 @@ function love.draw()
       canvas2X:setFilter("linear","linear")
       love.graphics.draw(canvas2X,borderX,borderY)
       love.graphics.scale(1.0/graphicsScaleFactor,1.0/graphicsScaleFactor)
+   end
+   -- draw the virtual gamepad directly to the screen
+   if touching then
+      -- virtual gamepad button coordinates i,j (1,1) top left, (3,3) bottom right
+      love.graphics.setColor(255,255,255,128)
+      local width = love.graphics.getWidth()
+      local height = love.graphics.getHeight()
+      local dPadButtonSizeX = dPadButtonSizeRel*width
+      local dPadButtonSizeY = dPadButtonSizeX
+      local dPadTopLeftX=0
+      local dPadTopLeftY=height-3*dPadButtonSizeY
+      local i=0
+      local j=0
+      --for i=0,2,1 do
+      --   for j=0,2,1 do
+      --      love.graphics.rectangle("line",dPadTopLeftX+i*dPadButtonSizeX,dPadTopLeftY+j*dPadButtonSizeY,dPadButtonSizeX,dPadButtonSizeY)
+      --   end
+      --end
+      for i=0,3,1 do
+      -- horizontal lines
+         love.graphics.line(dPadTopLeftX+1,dPadTopLeftY+i*dPadButtonSizeY,dPadTopLeftX+3*dPadButtonSizeX-1,dPadTopLeftY+i*dPadButtonSizeY)
+      -- vertical lines
+         love.graphics.line(dPadTopLeftX+i*dPadButtonSizeX,dPadTopLeftY+1,dPadTopLeftX+i*dPadButtonSizeX,dPadTopLeftY+3*dPadButtonSizeY-1)
+      end
+      -- virtual firebutton rectangle
+      local fireButtonSizeX = fireButtonSizeRel*width
+      local fireButtonSizeY = fireButtonSizeX
+      local fireButtonTopLeftX=width-fireButtonSizeX
+      local fireButtonTopLeftY=height-fireButtonSizeY
+      love.graphics.rectangle("line",fireButtonTopLeftX+i*fireButtonSizeX,fireButtonTopLeftY+j*dPadButtonSizeY,fireButtonSizeX,fireButtonSizeY)
    end
    --[[
    if gameWasPaused==true then

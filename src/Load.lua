@@ -17,6 +17,10 @@ function love.load()
    statusBarHeight=50
    
    touching = false
+   -- gamepad touch button sizes as fraction of displaywidth
+   dPadButtonSizeRel = 0.1
+   fireButtonSizeRel = 0.3
+
    
    defaultAudioSourceZPos = 0.5 -- controls the amount of stereo panning, 0 is absolute only left/right, 1 is barely noticeable panning
    
