@@ -13,8 +13,8 @@ function getInputPlayer(playerNumber)
          local width = love.graphics.getWidth()
          local height = love.graphics.getHeight()
          -- relative (square) button size
-         local dPadButtonSizeX = 0.15*width
-         local dPadButtonSizeY = 0.15*height
+         local dPadButtonSizeX = 0.1*width
+         local dPadButtonSizeY = dPadButtonSizeX
          -- top left coordinate of virtual gamepad
          local dPadTopLeftX=0
          local dPadTopLeftY=height-3*dPadButtonSizeY
@@ -25,8 +25,8 @@ function getInputPlayer(playerNumber)
             xInput = i-2
             yInput = j-2
          end
-         local fireButtonSizeX = 0.45*width
-         local fireButtonSizeY = 0.45*height
+         local fireButtonSizeX = 0.3*width
+         local fireButtonSizeY = fireButtonSizeX
          -- large virtual firebutton on the bottom right
          local fireButtonTopLeftX=width-fireButtonSizeX
          local fireButtonTopLeftY=height-fireButtonSizeY
