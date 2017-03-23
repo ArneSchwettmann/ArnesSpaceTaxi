@@ -11,8 +11,6 @@ To compile from source under Windows or OSX, simply drag the src directory onto 
 
 Packages that are ready to run for Windows, OSX and Android can be downloaded from the "releases" page in github at www.github.com/arneschwettmann/arnesspacetaxi/releases
 
-Note the Android version currently requires an external controller (joystick or gamepad) to be playable.
-
 Written by Arne Schwettmann
 
 Copyright (c) 2013-2017 Arne Schwettmann

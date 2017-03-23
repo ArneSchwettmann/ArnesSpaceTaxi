@@ -6,6 +6,4 @@ Try the 5 player mode.
 
 Packages that are ready to run for Windows, OSX and Android can be downloaded from the "releases" page in github at www.github.com/arneschwettmann/arnesspacetaxi/releases
 
-Note the Android version currently requires an external controller (joystick or gamepad) to be playable.
-
 See License.txt and Readme_License.txt for licensing details
