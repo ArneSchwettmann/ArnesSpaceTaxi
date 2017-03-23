@@ -3,6 +3,41 @@ function getInputPlayer(playerNumber)
    local xInput,yInput=0,0
    local buttonInput=false
    local inputForceMagnitude=thrusterForceMagnitude
+   
+   --player 1 responds to touch events also
+   if playerNumber==1 and touching then
+      -- deal with virtual gamepad touch events
+      local touches = love.touch.getTouches()
+      for i, id in ipairs(touches) do
+         local x, y = love.touch.getPosition(id)
+         local width = love.graphics.getWidth()
+         local height = love.graphics.getHeight()
+         -- relative (square) button size
+         local dPadButtonSizeX = 0.15*width
+         local dPadButtonSizeY = 0.15*height
+         -- top left coordinate of virtual gamepad
+         local dPadTopLeftX=0
+         local dPadTopLeftY=height-3*dPadButtonSizeY
+         -- virtual gamepad button coordinates i,j (1,1) top left, (3,3) bottom right
+         local i = math.ceil((x-dPadTopLeftX)/dPadButtonSizeX)
+         local j = math.ceil((y-dPadTopLeftY)/dPadButtonSizeY)
+         if i>=1 and i<=3 and j>=1 and j<=3 then
+            xInput = i-2
+            yInput = j-2
+         end
+         local fireButtonSizeX = 0.45*width
+         local fireButtonSizeY = 0.45*height
+         -- large virtual firebutton on the bottom right
+         local fireButtonTopLeftX=width-fireButtonSizeX
+         local fireButtonTopLeftY=height-fireButtonSizeY
+         if x>=fireButtonTopLeftX and x<=fireButtonTopLeftX+fireButtonSizeX 
+          and y>=fireButtonTopLeftY and y<=fireButtonTopLeftY+fireButtonSizeY
+          then
+            buttonInput = true
+         end
+      end
+   end
+   -- normal controls
    if controlTypes[controls[playerNumber]]=="Keyboard 1" then
       if love.keyboard.isDown("left") then
          xInput = -1     
@@ -219,5 +254,26 @@ function cycleControls(playerNumber)
    controls[playerNumber]=controls[playerNumber]+1
    if controls[playerNumber]>#controlTypes then
       controls[playerNumber]=1
+   end
+end
+
+function love.mousepressed(x, y, button, istouch)
+   if gameIsPaused==false and waitingForClick and button == 1 then
+      waitingForClick=false
+   end
+   if istouch then
+      touching = true
+   else
+      touching = false
+   end
+   if displayingTitleScreen then 
+      if button == 1 then
+         numPlayers=1
+         startGame()
+      end
+   elseif gameLost then
+      if button == 1 then
+         titleScreen()
+      end
    end
 end

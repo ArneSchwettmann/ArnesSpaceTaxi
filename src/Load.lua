@@ -16,6 +16,8 @@ function love.load()
    centerY = 125
    statusBarHeight=50
    
+   touching = false
+   
    defaultAudioSourceZPos = 0.5 -- controls the amount of stereo panning, 0 is absolute only left/right, 1 is barely noticeable panning
    
    desktopWidth=0 -- fullscreen size, will be populated later
