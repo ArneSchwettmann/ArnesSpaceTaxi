@@ -227,15 +227,15 @@ function love.load()
 	--local f = love.graphics.newFont(8)
    --love.graphics.setFont(f)
    --love.graphics.setBackgroundColor(255,255,255)
-   local fontImg=love.graphics.newImage(gfxDir.."fonts/Taito8.png")
-   fontImg:setFilter("nearest","nearest")
+   local fontImg=love.image.newImageData(gfxDir.."fonts/Taito8.png")
+   --fontImg:setFilter("nearest","nearest")
    bigFont = love.graphics.newImageFont(fontImg,
       " !#$%&'()*+,-.0123456789:;<=>?"..
       "ABCDEFGHIJKLMNOPQRSTUVWXYZ"..
       "[/]abcdefghijklmnopqrstuvwxyz", 1)
 
-   local fontImg2=love.graphics.newImage(gfxDir.."fonts/TinyUnicode7.png")
-   fontImg2:setFilter("nearest","nearest")
+   local fontImg2=love.image.newImageData(gfxDir.."fonts/TinyUnicode7.png")
+   --fontImg2:setFilter("nearest","nearest")
    smallFont = love.graphics.newImageFont(fontImg2,
 " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"..
 "0123456789.,!?-+/():;%&`'*#=[]\\$",1)
@@ -303,6 +303,11 @@ function createBGMask(imgFileName)
       mask[y]=row
       for x=1, imgWidth do
          local r,g,b,a=imageData:getPixel(x-1,y-1)
+         -- since Love 11, colors are now between 0 an 1 instead of 0 and 255
+         r=r*255
+         g=g*255
+         b=b*255
+         a=a*255
          row[x]=0
          if a>0 then
             if r==wallColor[1] and g==wallColor[2] and b==wallColor[3] then
@@ -374,7 +379,7 @@ function getNumLevels()
    local levelNumber=0
    local fileExists=true
    while fileExists do
-      if love.filesystem.exists(dir.."BG_"..tostring(levelNumber+1)..".png") and love.filesystem.exists(dir.."BG_"..tostring(levelNumber+1).."_Mask.png") and love.filesystem.exists(dir.."BG_"..tostring(levelNumber+1).."_Exit.png") and love.filesystem.exists(dir.."BG_"..tostring(levelNumber+1).."_Exit_Mask.png") then
+      if love.filesystem.getInfo(dir.."BG_"..tostring(levelNumber+1)..".png") and love.filesystem.getInfo(dir.."BG_"..tostring(levelNumber+1).."_Mask.png") and love.filesystem.getInfo(dir.."BG_"..tostring(levelNumber+1).."_Exit.png") and love.filesystem.getInfo(dir.."BG_"..tostring(levelNumber+1).."_Exit_Mask.png") then
          levelNumber=levelNumber+1
       else
          fileExists=false

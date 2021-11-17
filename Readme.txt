@@ -1,6 +1,6 @@
 Arne's SpaceTaxi
 
-This is a version of the classic space taxi game written by Arne Schwettmann in LUA, making use of the LÖVE game framework. It is written for LÖVE 0.10.2
+This is a version of the classic space taxi game written by Arne Schwettmann in LUA, making use of the LÖVE game framework. It is written for LÖVE 0.11.3
 
 Features:
 - classic gravity-based lander gameplay

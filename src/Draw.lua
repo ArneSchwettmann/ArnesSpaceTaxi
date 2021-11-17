@@ -9,10 +9,10 @@ function love.draw()
    if graphicsScaleFactor~=1.0 then
       love.graphics.setCanvas(canvas2X)
       love.graphics.push()
-      love.graphics.setColor(0,0,0,255)
+      love.graphics.setColor(0,0,0,1)
       love.graphics.rectangle('fill',0,0,2*width,2*height)
    else
-      love.graphics.setColor(0,0,0,255)
+      love.graphics.setColor(0,0,0,1)
       love.graphics.rectangle('fill',0,0,2*width+2*borderX,2*height+2*borderY)
       love.graphics.translate(borderX,borderY)
    end
@@ -25,7 +25,7 @@ function love.draw()
       drawControlScreen()
    else
 
-      love.graphics.setColor(255,255,255,255)
+      love.graphics.setColor(1,1,1,1)
       love.graphics.draw(background,0,0)
       -- draw the shadows first
       if drawShadows==true then
@@ -56,7 +56,7 @@ function love.draw()
          drawGameOverScreen()
       end
       if waitingForClick==true then
-         love.graphics.setColor(255,255,255,255)
+         love.graphics.setColor(1,1,1,1)
          --love.graphics.setColorMode("modulate")
          love.graphics.printf("Get ready for level "..currentLevel.."! (Press space or fire)", 0, centerY-25,width,"center")
          --love.graphics.setColorMode("replace")
@@ -72,7 +72,7 @@ function love.draw()
    end
    if graphicsScaleFactor==1 then
       --cover up the area above the top escape hole
-      love.graphics.setColor(0,0,0,255)
+      love.graphics.setColor(0,0,0,1)
       love.graphics.rectangle('fill',0,0,2*width,-borderY)
       love.graphics.scale(0.5,0.5)
       love.graphics.translate(-borderX,-borderY)
@@ -80,9 +80,9 @@ function love.draw()
       love.graphics.setCanvas()
       love.graphics.pop()
       love.graphics.scale(graphicsScaleFactor,graphicsScaleFactor)
-      love.graphics.setColor(0,0,0,255)
+      love.graphics.setColor(0,0,0,1)
       love.graphics.rectangle('fill',0,0,2*width+2*borderX+1,2*height+2*borderY+1)
-      love.graphics.setColor(255,255,255,255)
+      love.graphics.setColor(1,1,1,1)
       canvas2X:setFilter("linear","linear")
       love.graphics.draw(canvas2X,borderX,borderY)
       love.graphics.scale(1.0/graphicsScaleFactor,1.0/graphicsScaleFactor)
@@ -90,7 +90,7 @@ function love.draw()
    -- draw the virtual gamepad directly to the screen
    if touching then
       -- virtual gamepad button coordinates i,j (1,1) top left, (3,3) bottom right
-      love.graphics.setColor(255,255,255,128)
+      love.graphics.setColor(1,1,1,0.5)
       local width = love.graphics.getWidth()
       local height = love.graphics.getHeight()
       local dPadButtonSizeX = dPadButtonSizeRel*width
@@ -130,14 +130,14 @@ function drawStatusBar()
    for i=1,#playerReferences do
       xOffset=(i-1)*80
       yOffset=258
-      love.graphics.setColor(80,80,80,255)
+      love.graphics.setColor(80/255,80/255,80/255,1)
    
       love.graphics.rectangle("fill", xOffset, 252, 78, 46 )
    
 --      love.graphics.setColor(255,255,255,255)
 
    
-      love.graphics.setColor(200,200,255,255)
+      love.graphics.setColor(200/255,200/255,1,1)
       --love.graphics.setColorMode("modulate")
       if i==5 then
          love.graphics.draw(liveImages[i],xOffset+4,254-2) -- was 20
@@ -169,9 +169,9 @@ function drawStatusBar()
       end
       --love.graphics.setColorMode("replace")
    end
-   love.graphics.setColor(0,0,0,255)
+   love.graphics.setColor(0,0,0,1)
    love.graphics.rectangle("fill",width-30,254-2,30,12)
-   love.graphics.setColor(200,200,255,255)
+   love.graphics.setColor(200/255,200/255,1,1)
    love.graphics.draw(passengerLiveImage,width-30+2,254-1)
    love.graphics.print("x "..passengersLeft,width-30+14,255)
    
@@ -181,24 +181,24 @@ end
 function drawTitleScreen()
       local floor=math.floor
 
-      love.graphics.setColor(255,255,255,255)
+      love.graphics.setColor(1,1,1,1)
       love.graphics.draw(background,0,0)
       if drawShadows==true then
          love.graphics.setShader(shadowDitherShader)
          love.graphics.draw(screens[1],0+shadowOffsetX,0+shadowOffsetY)
          love.graphics.setShader()
       end
-      love.graphics.setColor(255,255,255,255)
+      love.graphics.setColor(1,1,1,1)
       love.graphics.draw(screens[1],0,0)
       if drawShadows==true then
          love.graphics.setShader(shadowDitherShaderNoTexture)
-         love.graphics.setColor(0,0,0,255)
+         love.graphics.setColor(0,0,0,1)
          love.graphics.rectangle("fill", floor(centerX-150+shadowOffsetX), floor(centerY-3-45+75+shadowOffsetY), 300, 88 )
          love.graphics.setShader()
       end   
-      love.graphics.setColor(255,255,255,255)
+      love.graphics.setColor(1,1,1,1)
       love.graphics.rectangle("fill", floor(centerX-150), floor(centerY-3-45+75), 300, 88 )
-      love.graphics.setColor(0,0,0,255)
+      love.graphics.setColor(0,0,0,1)
       love.graphics.printf("Fire or 1,2,3,4,5 - Start 1-5 player", 0, centerY-7-32+75,width,"center")
       love.graphics.printf("c - Configure controls", 0, centerY-7-16+75,width,"center")
       love.graphics.printf("f - Toggle fullscreen", 0, centerY-7+75,width,"center")
@@ -209,17 +209,17 @@ end
 function drawControlScreen()
    local floor=math.floor
 
-      love.graphics.setColor(255,255,255,255)
+      love.graphics.setColor(1,1,1,1)
       love.graphics.draw(background,0,0)
       if drawShadows==true then
          love.graphics.setShader(shadowDitherShaderNoTexture)
-         love.graphics.setColor(0,0,0,255)
+         love.graphics.setColor(0,0,0,1)
          love.graphics.rectangle("fill", floor(centerX-150+shadowOffsetX), floor(centerY-115+shadowOffsetY), 300, 230 )
          love.graphics.setShader()
       end   
-      love.graphics.setColor(255,255,255,255)
+      love.graphics.setColor(1,1,1,1)
       love.graphics.rectangle("fill", floor(centerX-150), floor(centerY-115), 300, 230 )
-      love.graphics.setColor(0,0,0,255)
+      love.graphics.setColor(0,0,0,1)
       love.graphics.printf("CONTROL CONFIGURATION", centerX-150, centerY-3-100,300,"center")
       love.graphics.printf("1 - P1 Controls: "..controlTypes[controls[1]], centerX-150, centerY-3-70,300,"center")
       love.graphics.printf("2 - P2 Controls: "..controlTypes[controls[2]], centerX-150, centerY-3-50,300,"center")
@@ -239,20 +239,20 @@ function drawPauseScreen()
    
    if drawShadows==true then
       love.graphics.setShader(shadowDitherShaderNoTexture)
-      love.graphics.setColor(0,0,0,255)
+      love.graphics.setColor(0,0,0,1)
       love.graphics.rectangle("fill", floor(centerX-125+shadowOffsetX), floor(centerY-40+shadowOffsetY), 250, 80 )
       love.graphics.setShader()
    end   
-   love.graphics.setColor(255,255,255,255)
+   love.graphics.setColor(1,1,1,1)
    love.graphics.rectangle("fill", floor(centerX-125), floor(centerY-40), 250, 80 )
-   love.graphics.setColor(0,0,0,255)
+   love.graphics.setColor(0,0,0,1)
    love.graphics.printf("Paused! Press p to continue", 0, centerY-4,width,"center")
 end
 
 function drawWinScreen()
    local floor=math.floor
    
-   love.graphics.setColor(255,255,255,255)
+   love.graphics.setColor(1,1,1,1)
    if drawShadows==true then
       love.graphics.setShader(shadowDitherShader)
       love.graphics.draw(screens[2],0+shadowOffsetX,0+shadowOffsetY)
@@ -262,13 +262,13 @@ function drawWinScreen()
    
    if drawShadows==true then
       love.graphics.setShader(shadowDitherShaderNoTexture)
-      love.graphics.setColor(0,0,0,255)
+      love.graphics.setColor(0,0,0,1)
       love.graphics.rectangle("fill", floor(centerX-150+shadowOffsetX), floor(centerY+80-40+shadowOffsetY), 300, 80 )
       love.graphics.setShader()
    end   
-   love.graphics.setColor(255,255,255,255)
+   love.graphics.setColor(1,1,1,1)
    love.graphics.rectangle("fill", floor(centerX-150), floor(centerY+80-40), 300, 80 )
-   love.graphics.setColor(0,0,0,255)
+   love.graphics.setColor(0,0,0,1)
    love.graphics.printf("Congratulations, you won!", 0, centerY-5+80-15,width,"center")   
    love.graphics.printf("Press q to restart!", 0, centerY-5+80+15,width,"center")   
 end
@@ -276,7 +276,7 @@ end
 function drawGameOverScreen()
    local floor=math.floor
 
-   love.graphics.setColor(255,255,255,255)
+   love.graphics.setColor(1,1,1,1)
    if drawShadows==true then
       love.graphics.setShader(shadowDitherShader)
       love.graphics.draw(screens[3],0+shadowOffsetX,0+shadowOffsetY)
@@ -286,38 +286,21 @@ function drawGameOverScreen()
    
    if drawShadows==true then
       love.graphics.setShader(shadowDitherShaderNoTexture)
-      love.graphics.setColor(0,0,0,255)
+      love.graphics.setColor(0,0,0,1)
       love.graphics.rectangle("fill", floor(centerX-100+shadowOffsetX), floor(centerY+75-40+shadowOffsetY), 200, 80 )
       love.graphics.setShader()
    end   
-   love.graphics.setColor(255,255,255,255)
+   love.graphics.setColor(1,1,1,1)
    love.graphics.rectangle("fill", floor(centerX-100), floor(centerY+75-40), 200, 80 )
-   love.graphics.setColor(0,0,0,255)
+   love.graphics.setColor(0,0,0,1)
    love.graphics.printf("Press q to restart", 0, centerY-5+75,width,"center")
 end
 
 function drawProgressBar(x,y,width,height,percent)
    local r,g,b,a = love.graphics.getColor()
-   love.graphics.setColor(0,0,64,255)
+   love.graphics.setColor(0,0,64/255,1)
    love.graphics.rectangle("fill",x,y,width,height)
    love.graphics.setColor(r,g,b,a)
    love.graphics.rectangle("fill",x+1,y+1,math.floor((width-2)*percent/100),height-2)
    love.graphics.setColor(r,g,b,a)
 end
-   
-
-
-
-   
-   --love.graphics.setColor(0,0,0,255)
-   --love.graphics.rectangle('fill',0,0,fullscreenWidth,fullscreenHeight)
-   
-   --love.graphics.setCanvas(canvas2X)
-   
-   --multiple canvasses are too slow
-   --love.graphics.push()
-   --love.graphics.scale(2,2)
-   --love.graphics.setColor(255,255,255,255)
-   --love.graphics.draw(canvas1X,0,0)
-   --scale more if needed
-   

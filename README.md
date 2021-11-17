@@ -3,7 +3,7 @@ Arne's SpaceTaxi
 
 Gravity-based space taxi game written in LUA
 
-This is a version of the classic space taxi game written in LUA, making use of the LÖVE game framework. It is written for LÖVE 0.10.2.
+This is a version of the classic space taxi game written in LUA, making use of the LÖVE game framework. It is written for LÖVE 0.11.3.
 
 Features:
 - classic gravity-based lander gameplay
@@ -15,11 +15,11 @@ Try the 5 player mode.
 
 Packages that are ready to run for Windows, OSX and Android can be downloaded from the "releases" page in github at www.github.com/arneschwettmann/arnesspacetaxi/releases
 
-To compile from source under Windows or OSX, simply drag the src directory onto Love.exe version 0.10.2. For more information on LÖVE, visit love2d.org.
+To compile from source under Windows or OSX, simply drag the src directory onto Love.exe version 0.11.3. For more information on LÖVE, visit love2d.org.
 
 Written by Arne Schwettmann
 
-Copyright (c) 2013-2017 Arne Schwettmann
+Copyright (c) 2013-2021 Arne Schwettmann
 
 The above copyright holds for all material in this project that is not part of LÖVE or the libraries distributed with LÖVE. This program is not free software. Default copyright laws apply. See License.txt and Readme_License.txt for more licensing details
 

@@ -1,8 +1,8 @@
 function debugOutput()   
    -- debug output
-   love.graphics.setColor(255,0,0,255)
+   love.graphics.setColor(1,0,0,1)
    --love.graphics.line(playerCenter_x,playerCenter_y,playerCenter_x+forceOnBall_x*0.005,playerCenter_y+forceOnBall_y*0.005)
-   love.graphics.setColor(0,0,0,255)
+   love.graphics.setColor(0,0,0,1)
    --love.graphics.line(playerCenter_x,playerCenter_y,playerCenter_x+normal_x*50,playerCenter_y+normal_y*50)
    --love.graphics.print("Friction value: "..tostring(player.frictionCoeff), 10, 20)
    --love.graphics.print("Bat mass value: "..tostring(player.mass), 10, 30)  

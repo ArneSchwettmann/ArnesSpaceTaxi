@@ -31,7 +31,7 @@ end
 function updatePassengerVoices()
    for i=#passengerVoices,1,-1 do
       local voice=passengerVoices[i]
-      if voice.sources[voice.currentSource]:isStopped() then
+      if not voice.sources[voice.currentSource]:isPlaying() then
          if voice.currentSource==3 then
             table.remove(passengerVoices,i)
          else
