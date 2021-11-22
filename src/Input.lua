@@ -87,39 +87,59 @@ function getInputPlayer(playerNumber)
       local joyXInput,joyYInput = 0,0
       if ( joystickNum <= numJoysticks ) then
          local joystick = joysticks[joystickNum]
-         local numButtons = joystick:getButtonCount()
-         if joystick:getAxisCount()>=1 then
-            joyXInput,joyYInput = joystick:getAxes()
-            io.write(joyXInput)
-         end
-         if joystick:getHatCount()>=1 then
-            local hatDirection = joystick:getHat(1)
-            if hatDirection == 'u' then
-                joyYInput = -1
-                joyXInput = 0
-            elseif hatDirection == 'd' then
-                joyYInput = 1
-            elseif hatDirection == 'l' then
-                joyXInput = -1
-            elseif hatDirection == 'r' then
-                joyXInput = 1
-            elseif hatDirection == 'ld' then
-                joyXInput = -1
-                joyYInput = 1
-            elseif hatDirection == 'lu' then
-                joyXInput = -1
-                joyYInput = -1
-            elseif hatDirection == 'rd' then
-                joyXInput = 1
-                joyYInput = 1
-            elseif hatDirection == 'ru' then
-                joyXInput = 1
-                joyYInput = -1
-            end 
-         end
-         if numButtons>0 then
-            if anyButtonPressed(joystick, numButtons) then
-               buttonInput=true
+         if (joystick:isGamepad()) then
+            joyXInput = joystick:getGamepadAxis("leftx")
+            joyYInput = joystick:getGamepadAxis("lefty")
+            if joystick:isGamepadDown("dpup") then
+               joyYInput = -1
+            elseif joystick:isGamepadDown("dpdown") then
+               joyYInput = 1
+            end
+            if joystick:isGamepadDown("dpleft") then
+               joyXInput = -1
+            elseif joystick:isGamepadDown("dpright") then
+               joyXInput = 1
+            end
+            if joystick:isGamepadDown("a", "b", "x", "y") then
+               buttonInput = true
+            end
+            if joystick:isGamepadDown("back") then
+               love.keypressed("q")
+            end
+         else
+            local numButtons = joystick:getButtonCount()
+            if joystick:getAxisCount()>=1 then
+               joyXInput,joyYInput = joystick:getAxes()
+            end
+            if joystick:getHatCount()>=1 then
+               local hatDirection = joystick:getHat(1)
+               if hatDirection == 'u' then
+                   joyYInput = -1
+                   joyXInput = 0
+               elseif hatDirection == 'd' then
+                   joyYInput = 1
+               elseif hatDirection == 'l' then
+                   joyXInput = -1
+               elseif hatDirection == 'r' then
+                   joyXInput = 1
+               elseif hatDirection == 'ld' then
+                   joyXInput = -1
+                   joyYInput = 1
+               elseif hatDirection == 'lu' then
+                   joyXInput = -1
+                   joyYInput = -1
+               elseif hatDirection == 'rd' then
+                   joyXInput = 1
+                   joyYInput = 1
+               elseif hatDirection == 'ru' then
+                   joyXInput = 1
+                   joyYInput = -1
+               end
+            end
+            if numButtons>0 then
+               if anyButtonPressed(joystick, numButtons) then
+                  buttonInput=true
+               end
             end
          end
          if joyXInput > 0.25 then 
@@ -156,18 +176,31 @@ end
 function love.gamepadpressed(joystick, button)
    -- press fire on title screen to start single player game with joystick controls
    if (displayingTitleScreen
-    and button ~= "dpup" 
-    and button ~= "dpdown" 
-    and button ~= "dpleft" 
-    and button ~= "dpright") then  
+    and button ~= "dpup"
+    and button ~= "dpdown"
+    and button ~= "dpleft"
+    and button ~= "dpright") then
+      if (button == "back") then
+         love.keypressed('q')
+      end
       for i=1,#joysticks,1 do
          if joysticks[i]:getID()==joystick:getID() then
-            -- set first player to the joystick that was pressed and start game
-            controls[1]=i+2
             numPlayers=1
+            for j=1,5,1 do
+               if controls[j]==i+2 then
+                  numPlayers=j
+               end
+            end
             startGame()
          end
       end
+   elseif (gameLost
+    and button ~= "dpup"
+    and button ~= "dpdown"
+    and button ~= "dpleft"
+    and button ~= "dpright"
+    and button ~= "back") then
+      titleScreen()
    end
 end
 

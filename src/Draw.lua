@@ -203,7 +203,7 @@ function drawTitleScreen()
       love.graphics.printf("c - Configure controls", 0, centerY-7-16+75,width,"center")
       love.graphics.printf("f - Toggle fullscreen", 0, centerY-7+75,width,"center")
       love.graphics.printf("t - Toggle scaling (fullscreen only)", 0, centerY-7+16+75,width,"center")
-      love.graphics.printf("q - Quit", 0, centerY-7+32+75,width,"center")
+      love.graphics.printf("q or Select - Quit", 0, centerY-7+32+75,width,"center")
 end
 
 function drawControlScreen()
@@ -293,7 +293,7 @@ function drawGameOverScreen()
    love.graphics.setColor(1,1,1,1)
    love.graphics.rectangle("fill", floor(centerX-100), floor(centerY+75-40), 200, 80 )
    love.graphics.setColor(0,0,0,1)
-   love.graphics.printf("Press q to restart", 0, centerY-5+75,width,"center")
+   love.graphics.printf("Press Q to restart", 0, centerY-5+75,width,"center")
 end
 
 function drawProgressBar(x,y,width,height,percent)

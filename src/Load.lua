@@ -182,9 +182,9 @@ function love.load()
    fsaa=flags.msaa
    initializeFullscreenMode()
    love.graphics.setDefaultFilter("nearest","nearest")
-   if fullscreen then 
+   -- if fullscreen then 
       toggleScaling()
-   end
+   -- end
    
    --canvas1X=love.graphics.newCanvas(width,height)
    --canvas1X:setFilter("nearest","nearest")
@@ -249,6 +249,19 @@ function love.load()
    joysticks = love.joystick.getJoysticks()
    numJoysticks = love.joystick.getJoystickCount();
    
+   if numJoysticks == 0 then
+      controls = {1,2,3,4,5}
+   elseif numJoysticks == 1 then
+      controls = {3,1,2,4,5}
+   elseif numJoysticks == 2 then
+      controls = {3,4,1,2,5}
+   elseif numJoysticks == 3 then
+      controls = {3,4,5,1,2}
+   elseif numJoysticks == 4 then
+      controls = {3,4,5,6,1}
+   elseif numJoysticks >= 5 then
+      controls = {3,4,5,6,7}
+   end
    --pauseGame()
    titleScreen()
 end
