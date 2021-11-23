@@ -229,10 +229,7 @@ function drawControlScreen()
        love.graphics.printf("Keyboard1 = arrow keys + right shift", centerX-150, centerY-3+80,300,"center")
       love.graphics.printf("Keyboard2 = w a s d + left shift", centerX-150, centerY-3+100,300,"center")
       love.graphics.printf("q - Return to Title Menu", centerX-150, centerY-3+40,300,"center")
-      
 end
-
-
 
 function drawPauseScreen()
    local floor=math.floor

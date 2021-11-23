@@ -3,7 +3,7 @@ function getInputPlayer(playerNumber)
    local xInput,yInput=0,0
    local buttonInput=false
    local inputForceMagnitude=thrusterForceMagnitude
-   
+
    --player 1 responds to touch events also
    if playerNumber==1 and touching then
       -- deal with virtual gamepad touch events
@@ -37,6 +37,7 @@ function getInputPlayer(playerNumber)
          end
       end
    end
+
    -- normal controls
    if controlTypes[controls[playerNumber]]=="Keyboard 1" then
       if love.keyboard.isDown("left") then
@@ -146,20 +147,17 @@ function getInputPlayer(playerNumber)
             xInput = 1 
          elseif joyXInput < -0.25 then
             xInput = -1
-         else
-            xInput = 0
          end
          if joyYInput > 0.25 then 
             yInput = 1 
          elseif joyYInput < -0.25 then
             yInput = -1
-         else
-            yInput = 0
          end
       end
    end
+
    return xInput*inputForceMagnitude,yInput*inputForceMagnitude,buttonInput
-end       
+end
 
 function anyButtonPressed(joystick,numButtons)
 	local returnValue=false
@@ -175,6 +173,7 @@ end
 
 function love.gamepadpressed(joystick, button)
    -- press fire on title screen to start single player game with joystick controls
+   touching = false
    if (displayingTitleScreen
     and button ~= "dpup"
     and button ~= "dpdown"
@@ -205,6 +204,7 @@ function love.gamepadpressed(joystick, button)
 end
 
 function love.keypressed(key, scancode, isrepeat)
+   touching = false
    if displayingTitleScreen then 
       if key == 'q' then
          love.event.quit()
@@ -311,16 +311,41 @@ function love.mousepressed(x, y, button, istouch)
    end
 end
 
+function love.joystickpressed(joystick, button)
+   touching = false
+   if not joystick:isGamepad() then
+      if gameIsPaused==false and waitingForClick and button == 1 then
+         waitingForClick=false
+      end
+      if displayingTitleScreen then
+         for i=1,#joysticks,1 do
+            if joysticks[i]:getID()==joystick:getID() then
+               numPlayers=1
+               for j=1,5,1 do
+                  if controls[j]==i+2 then
+                     numPlayers=j
+                  end
+               end
+               startGame()
+            end
+         end
+      elseif gameLost then
+         titleScreen()
+      end
+   end
+end
+
 function love.touchpressed(id, x, y, dx, dy, pressure)
+   touching = true
+
    if gameIsPaused==false and waitingForClick then
       waitingForClick=false
    end
-   touching = true
 
    if displayingTitleScreen then
-         numPlayers=1
-         startGame()
+      numPlayers=1
+      startGame()
    elseif gameLost then
-         titleScreen()
+      titleScreen()
    end
 end
