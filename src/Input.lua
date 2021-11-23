@@ -310,3 +310,17 @@ function love.mousepressed(x, y, button, istouch)
       end
    end
 end
+
+function love.touchpressed(id, x, y, dx, dy, pressure)
+   if gameIsPaused==false and waitingForClick then
+      waitingForClick=false
+   end
+   touching = true
+
+   if displayingTitleScreen then
+         numPlayers=1
+         startGame()
+   elseif gameLost then
+         titleScreen()
+   end
+end
